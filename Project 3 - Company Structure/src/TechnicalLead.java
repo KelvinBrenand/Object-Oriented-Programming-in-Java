@@ -26,18 +26,26 @@ public class TechnicalLead extends TechnicalEmployee {
     }
 
     public boolean requestBonus(Employee e, double bonus){
-        //depende de bussinessLead
+        if (((Accountant) getManager()).approveBonus(bonus)) {
+            e.setBonus(e.getBonus() + bonus);
+            return true;
+        }
+        return false;
     }
 
     public String getTeamStatus(){
         if (reports.size() == 0){
             return this.toString() + " has " + this.getCheckIn() + " successful check ins and no direct reports yet";
         }else {
-            String s = this.toString() + " has " + this.getCheckIn() + "successful check ins and is managing: /n";
+            String s = this.toString() + " has " + this.getCheckIn() + " successful check ins and is managing: \n";
             for (SoftwareEngineer report : reports) {
-                s += report.toString() + " has " + report.getSuccessfulCheckIns() + "successful check ins.\n";
+                s += report.toString() + " has " + report.getSuccessfulCheckIns() + " successful check ins.\n";
             }
             return s;
         }
+    }
+
+    public int getReports(){
+        return reports.size();
     }
 }
