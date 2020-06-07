@@ -2,13 +2,15 @@ public abstract class Employee {
     private String name;
     private double baseSalary;
     private int employeeID;
-    private int bonus;
     private Employee Manager;
+    private double bonus;
+    private static int numberOfEmployees;
 
     public Employee(String name, double baseSalary){
         this.name = name;
         this.baseSalary = baseSalary;
-        employeeID = employeeID + 1;
+        numberOfEmployees++;
+        employeeID = numberOfEmployees;
     }
 
     public String getName() {
@@ -29,6 +31,14 @@ public abstract class Employee {
 
     public Employee getManager(){
         return Manager;
+    }
+
+    public double getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
     }
 
     public boolean equals(Employee other){
